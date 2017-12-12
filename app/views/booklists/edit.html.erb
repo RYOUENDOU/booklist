@@ -1,0 +1,68 @@
+<%= form_for(@booklist) do |f| %>
+  <% if @booklist.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@booklist.errors.count, "error") %> prohibited this booklist from being saved:</h2>
+      <ul>
+      <% @booklist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>本の編集	</h1>
+<%= form_for @booklist do |f| %>
+ 
+ <div class="container">
+   <div class="field">
+      <%= f.label :title, "タイトル", class: "title" %><br>
+      <%= f.text_field :title, class: "size", id: :book_title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price,"価格", class: "title" %><br>
+      <%= f.number_field :price, class: "size", id: :book_price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :detail,"内容", class: "title" %><br>
+      <%= f.text_field :detail, class: "size", id: :book_detail %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rate, "評価", class: "title" %><br>
+      <%= f.text_field :rate, class: "size", id: :book_rate %>
+    </div>
+</div>
+<br>
+<div class="actions">
+  <%= f.submit "アップデート", class: "size" %>
+</div>
+
+<div class="title">
+  <p>コメント一覧</p>
+</div>  
+<table border="1" class="list">
+    <tr>  
+    <th>ニックネーム</th>
+    <th>コメント</th>
+    <th>ー</th>
+
+    </tr>
+    <% @comments.each do |comment| %>
+    <tr>
+    <td><%= comment.nickname %></td>
+    <td><%= comment.body %></td>
+    <td><%= link_to '削除', booklist_comments_path(@booklist, comment), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+    </tr>
+
+<% end %>
+</table>
+<br>
+  
+<%= link_to '全削除', @booklist, method: :delete, data: { confirm: '本の内容とコメントが全て削除されます' } %>
+
+<%= link_to '一覧に戻る', booklists_path %>
+<% end %>
+

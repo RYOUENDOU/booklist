@@ -1,0 +1,45 @@
+<%= form_for(@booklist) do |f| %>
+  <% if @booklist.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@booklist.errors.count, "error") %> prohibited this booklist from being saved:</h2>
+      <ul>
+      <% @booklist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>新規投稿</h1>
+<%= form_for @booklist do |f| %>
+ <div class="container">
+   <div class="field">
+      <%= f.label :title, "タイトル", class: "title" %><br>
+      <%= f.text_field :title, class: "size", id: :book_title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price,"価格", class: "title" %><br>
+      <%= f.number_field :price, class: "size", id: :book_price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :detail,"内容", class: "title" %><br>
+      <%= f.text_field :detail, class: "size", id: :book_detail %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rate, "評価", class: "title" %><br>
+      <%= f.text_field :rate, class: "size", id: :book_rate %>
+    </div>
+</div>
+  <div class="actions">
+    <%= f.submit "保存", class: "size" %>
+  </div>
+  <div class="back">
+  <%= link_to '一覧に戻る', booklists_path %>
+</div>
+
+
+<% end %>

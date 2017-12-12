@@ -1,0 +1,46 @@
+<%= link_to '本の一覧 ', booklists_path %> ｜
+<%= link_to '編集', edit_booklist_path %> 
+
+<table border="1" class ="index">
+	<thead>
+	    <th>タイトル</th>	
+	    <th>値段</th>	
+	    <th>内容</th>
+	    <th>評価</th>	
+	</thead>
+	<tbody>
+		<td><%= @booklist.title %></td>
+		<td><%= @booklist.price %></td>
+		<td><%= @booklist.detail %></td>
+		<td><%= @booklist.rate %></td>
+	</tbody>
+</table>
+
+
+
+<p>コメント一覧</p>
+<table border="1" class="list">
+	<tr>
+		<th>ニックネーム</th>
+		<th>コメント</th>
+	</tr>
+    <% @comments.each do |comment| %>
+    <tr>
+    	<td><%= comment.nickname %></td>
+    	<td><%= comment.body %></td>
+    </tr>
+<% end %>
+</table>
+<br>
+
+<div class="comment">
+	<p>新規	コメント作成</p>
+	<%= form_for([@booklist, @booklist.comments.build]) do |f| %>
+	<p><%= f.label :nickname,"ニックネーム" %></p>
+	<p><%= f.text_field :nickname, class: "title" %></p>
+	<p><%= f.label :body,"コメント" %></p>
+	<p><%= f.text_field :body, class: "size" %></p>
+	<p><%= f.submit "コメント追加" %></p>
+	<% end %>
+</div>
+	

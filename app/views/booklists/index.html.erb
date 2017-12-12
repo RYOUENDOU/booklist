@@ -1,0 +1,26 @@
+<h1>本の紹介</h1>
+ <table border="2" class="main">
+   <thead>
+      <th>タイトル</th>
+      <th>価格</th>
+      <th>内容</th>
+      <th>評価</th>
+      <th>詳細|編集</th>
+   </thead>
+      <tbody>
+      <% @booklists.each do |booklist| %>
+        <tr>
+          <td><%= booklist.title %></td>
+          <td><%= booklist.price %>円</td>
+          <td><%= booklist.detail %></td>
+          <td><%= booklist.rate %></td>
+          <td><%= link_to '詳細', booklist %>|<%= link_to '編集', edit_booklist_path(booklist) %></td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= link_to '新たに本を紹介する', new_booklist_path %></p>
+
+<br>
+	
+
